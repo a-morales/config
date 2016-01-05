@@ -1,0 +1,15 @@
+kwmc config padding top 30
+kwmc config padding bottom 5
+kwmc config padding left 10
+kwmc config padding right 10
+kwmc config gap vertical 10
+kwmc config gap horizontal 10
+
+kwmc config hotkeys disable
+kwmc config focus autoraise
+kwmc config tiling enable
+kwmc config menu-fix disable
+
+# App Ignore List
+kwmc config float Steam
+kwmc config float Screenhero

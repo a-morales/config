@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+mkdir -p ~/.bin
+git clone git@github.com:tarjoilija/zgen.git ~/.bin/zgen
+
+ln -s $HOME/.config/zsh/zshrc $HOME/.zshrc
+ln -s $HOME/.config/kwmrc $HOME/.kwmrc
+ln -s $HOME/.config/tmux.conf $HOME/.tmux.conf
+ln -s $HOME/.config/hammerspoon $HOME/.hammerspoon
