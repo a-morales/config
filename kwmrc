@@ -10,6 +10,8 @@ kwmc config focus autoraise
 kwmc config tiling enable
 kwmc config menu-fix disable
 
+kwmc config add-role AXDialog iTerm2
+
 # App Ignore List
 kwmc config float Steam
 kwmc config float Screenhero

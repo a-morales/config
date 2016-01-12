@@ -1,9 +1,6 @@
 local modal = hs.hotkey.modal.new({'ctrl'}, '\'')
-local log = hs.logger
 
-local padding = 5
-local modalBox
-local primaryScreen = hs.screen.primaryScreen()
+modalBox = nil
 
 hs.alert.show("Config loaded")
 
@@ -11,10 +8,10 @@ function modal:entered()
   currentScreen = hs.screen.mainScreen():fullFrame()
   modalBox = hs.drawing.rectangle(currentScreen)
   modalBox:setStroke(true):setFill(false)
-  modalBox:setStrokeColor(hs.drawing.color.osx_yellow)
-  modalBox:setStrokeWidth(padding)
+  modalBox:setStrokeColor(hs.drawing.color.osx_yellow):setStrokeWidth(5)
   modalBox:show()
 end
+
 function modal:exited()
   if modalBox then
     modalBox:delete()
@@ -26,65 +23,32 @@ modal:bind({}, 'escape', function()
   modal:exit()
 end)
 
-modal:bind({}, 'r', hs.reload)
-
-function kwmc(command)
+function kwmcCommand(command)
   local kwmcPath = '/Users/morales/.bin/kwmc'
   hs.task.new(kwmcPath, nil, command):start()
 end
 
-modal:bind({'shift'}, 'r', function()
-  kwmc({'space', '-r', '180'})
-end)
+function kwmc(command, shouldExit)
+  shouldExit = shouldExit or false
+  function closure()
+    kwmcCommand(command)
+    if shouldExit then modal:exit() end
+  end
+  return closure
+end
 
-modal:bind({'shift'}, 'f', function()
- kwmc({'window', '-t', 'fullscreen'})
-end)
+modal:bind({}, 'r', hs.reload)
+modal:bind({}, 'n', kwmc({'window', '-f', 'next'}))
+modal:bind({}, 'p', kwmc({'window', '-f', 'prev'}))
+modal:bind({}, '1', kwmc({'screen', '-m', 'next'}))
+modal:bind({}, '2', kwmc({'screen', '-m', 'prev'}))
+modal:bind({}, 'h', kwmc({'screen', '-f', 'prev'}, true))
+modal:bind({}, 'l', kwmc({'screen', '-f', 'next'}, true))
 
-modal:bind({}, 'n', function()
-  kwmc({'window', '-s', 'next'})
-end)
-
-modal:bind({}, 'p', function()
-  kwmc({'window', '-s', 'prev'})
-end)
-
-modal:bind({'shift'}, 'n', function()
-  kwmc({'screen', '-m', 'next'})
-end)
-
-modal:bind({'shift'}, 'p', function()
-  kwmc({'screen', '-m', 'prev'})
-end)
-
-modal:bind({}, 'h', function()
-  hs.window.focusWindowWest()
-  focusMouse()
-  modal:exit()
-end)
-modal:bind({}, 'l', function()
-  hs.window.focusWindowEast()
-  focusMouse()
-  modal:exit()
-end)
-modal:bind({}, 'j', function()
-  hs.window.focusWindowSouth()
-  focusMouse()
-  modal:exit()
-end)
-modal:bind({}, 'k', function()
-  hs.window.focusWindowNorth()
-  focusMouse()
-  modal:exit()
-end)
-
-modal:bind({}, '1', function()
-  hs.window.focusedWindow():moveToScreen(hs.screen.primaryScreen():next())
-end)
-
-modal:bind({}, '2', function()
-  hs.window.focusedWindow():moveToScreen(hs.screen.primaryScreen())
-end)
+modal:bind({'shift'}, 'r', kwmc({'tree', '-r', '180'}))
+modal:bind({'shift'}, 'f', kwmc({'window', '-t', 'fullscreen'}))
+modal:bind({'shift'}, 'n', kwmc({'window', '-s', 'next'}))
+modal:bind({'shift'}, 'p', kwmc({'window', '-s', 'prev'}))
 
 function focusMouse()
   local win = hs.window.focusedWindow()
@@ -95,7 +59,7 @@ function focusMouse()
   local y = frame.y + frame.h - 20
 
   hs.mouse.setAbsolutePosition(hs.geometry.point(x, y))
-  kwmc({'window', '-f', 'curr'})
+  kwmcCommand({'window', '-f', 'curr'})
 end
 
 border = nil
@@ -123,16 +87,10 @@ function drawBorder()
     border:show()
 end
 
-function windowActions()
-  drawBorder()
-  focusMouse()
-end
-
-windowActions()
-focusMouse()
-kwmc({'quit'})
+drawBorder()
+kwmcCommand({'quit'})
 
 windows = hs.window.filter.new(nil)
-windows:subscribe(hs.window.filter.windowFocused, function () drawBorder() end)
-windows:subscribe(hs.window.filter.windowUnfocused, function () drawBorder() end)
-windows:subscribe(hs.window.filter.windowMoved, function () drawBorder() end)
+windows:subscribe(hs.window.filter.windowFocused, drawBorder)
+windows:subscribe(hs.window.filter.windowUnfocused, drawBorder)
+windows:subscribe(hs.window.filter.windowMoved, drawBorder)
