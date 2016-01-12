@@ -42,8 +42,16 @@ modal:bind({}, 'n', kwmc({'window', '-f', 'next'}))
 modal:bind({}, 'p', kwmc({'window', '-f', 'prev'}))
 modal:bind({}, '1', kwmc({'screen', '-m', 'next'}))
 modal:bind({}, '2', kwmc({'screen', '-m', 'prev'}))
-modal:bind({}, 'h', kwmc({'screen', '-f', 'prev'}, true))
-modal:bind({}, 'l', kwmc({'screen', '-f', 'next'}, true))
+modal:bind({}, 'h', kwmc({'window', '-f', 'prev'}))
+modal:bind({}, 'j', kwmc({'window', '-f', 'prev'}))
+modal:bind({}, 'k', kwmc({'window', '-f', 'next'}))
+modal:bind({}, 'l', kwmc({'window', '-f', 'next'}))
+
+modal:bind({'shift'}, 'h', kwmc({'screen', '-f', 'prev'}, true))
+modal:bind({'shift'}, 'j', kwmc({'window', '-s', 'next'}))
+modal:bind({'shift'}, 'k', kwmc({'window', '-s', 'prev'}))
+modal:bind({'shift'}, 'l', kwmc({'screen', '-f', 'next'}, true))
+
 
 modal:bind({'shift'}, 'r', kwmc({'tree', '-r', '180'}))
 modal:bind({'shift'}, 'f', kwmc({'window', '-t', 'fullscreen'}))
