@@ -1,6 +1,6 @@
 filety off
 
-cal plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Raimondi/delimitMate'
 Plug 'SwagKingTenK/VimSearch'
@@ -31,8 +31,14 @@ Plug 'tpope/vim-salve'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rake'
 Plug 'unblevable/quick-scope'
 Plug 'wavded/vim-stylus'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-endwise'
+Plug 'slim-template/vim-slim'
 
 call plug#end()
 
