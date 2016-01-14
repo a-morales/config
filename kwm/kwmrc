@@ -1,0 +1,37 @@
+kwmc config padding top 30
+kwmc config padding bottom 10
+kwmc config padding left 10
+kwmc config padding right 10
+kwmc config gap vertical 15
+kwmc config gap horizontal 15
+
+kwmc config focus autoraise
+kwmc config tiling enable
+kwmc config menu-fix disable
+kwmc config cycle-focus all
+
+kwmc config add-role AXDialog iTerm2
+
+# App Ignore List
+kwmc config float Steam
+kwmc config float Screenhero
+
+# Hotkeys
+kwmc config hotkeys enable
+kwmc config prefix ctrl-;
+kwmc config prefix-timeout 0.75
+
+kwmc bind ctrl-h window -f prev
+kwmc bind ctrl-j window -f prev
+kwmc bind ctrl-k window -f next
+kwmc bind ctrl-l window -f next
+
+kwmc bind ctrl-6 screen -m next
+
+kwmc bind ctrl+cmd-h screen -f next
+kwmc bind ctrl+cmd-j window -s next
+kwmc bind ctrl+cmd-k window -s prev
+kwmc bind ctrl+cmd-l screen -f prev
+
+kwmc bind ctrl-r tree -r 180
+kwmc bind ctrl-f window -t fullscreen
