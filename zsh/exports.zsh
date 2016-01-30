@@ -29,4 +29,4 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export GOPATH="$HOME/.go"
 export PIP_REQUIRE_VIRTUALENV=true
 
-export PATH=/usr/local/texlive/2015basic/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:$HOME/.bin:./node_modules/.bin:/usr/sbin:/sbin:$GOPATH/bin:/usr/local/sbin:bin:$PATH
+export PATH=/usr/local/texlive/2015basic/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:$HOME/.bin:./node_modules/.bin:/usr/sbin:/sbin:$GOPATH/bin:/usr/local/sbin:bin:$HOME/.bin/dasht:$PATH

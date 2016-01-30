@@ -39,6 +39,8 @@ Plug 'wavded/vim-stylus'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'slim-template/vim-slim'
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 

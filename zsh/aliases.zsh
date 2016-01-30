@@ -19,8 +19,7 @@ alias zless=$PAGER
 alias gst='git status'
 alias gch='git checkout'
 alias gcb='git checkout -b'
-alias gcm='git checkout master'
-alias gcd='git checkout development'
+alias gcm='git checkout $(git town main-branch)'
 alias gct='git checkout -t'
 alias gdi='git diff'
 alias gds='git diff --stat'
@@ -34,6 +33,7 @@ alias gha='git hack'
 alias gsh='git ship'
 alias gsy='git sync'
 alias gco='git commit'
+alias gitp='git clone $(pbpaste)'
 glom() { git log --oneline origin/master.."$1" $* }
 compdef _git glom=git-branch
 gdm() { git diff origin/master.."$1" $* }
@@ -50,3 +50,4 @@ alias rd='cd $(git rev-parse --show-toplevel)'
 
 alias unloadKwm='launchctl unload ~/Library/LaunchAgents/kwm.plist'
 alias loadKwm='launchctl load ~/Library/LaunchAgents/kwm.plist'
+alias rake='noglob rake'
