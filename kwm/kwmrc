@@ -1,51 +1,50 @@
-kwmc config padding top 30
-kwmc config padding bottom 5
-kwmc config padding left 10
-kwmc config padding right 10
-
-kwmc config gap vertical 15
-kwmc config gap horizontal 15
-
+kwmc config padding 25 5 5 5
+kwmc config gap 5 5
 
 kwmc config focused-border color AA8FA1B3
-kwmc config focused-border enable
+kwmc config focused-border on
 kwmc config focused-border size 4
 
 kwmc config prefix-border color FFBF616A
-kwmc config prefix-border enable
+kwmc config prefix-border on
 kwmc config prefix-border size 4
 
 kwmc config focus autoraise
-kwmc config tiling enable
-kwmc config menu-fix disable
-kwmc config cycle-focus all
-kwmc config float-non-resizable enable
-kwmc config focus standby-on-float enable
-kwmc config dragndrop enable
+kwmc config tiling on
+kwmc config menu-fix off
+kwmc config cycle-focus screen
+kwmc config float-non-resizable on
+kwmc config focus standby-on-float on
+kwmc config focus mouse-follows on
+kwmc config focus-wrap-around all
+kwmc config dragndrop on
 
 kwmc config add-role AXDialog iTerm2
 
 # App Ignore List
 kwmc config float Steam
 kwmc config float Screenhero
+kwmc config float VLC
 
 # Hotkeys
-kwmc config hotkeys enable
-kwmc config prefix ctrl-;
-kwmc prefix-global disable
+kwmc config hotkeys on
+kwmc config prefix-key ctrl-;
+kwmc prefix-global off
 kwmc config prefix-timeout 0.50
 
-kwmc bind prefix+ctrl-h window -f next
+kwmc bind prefix+r kwmc config reload
+
+kwmc bind prefix+ctrl-h screen -f next
 kwmc bind prefix+ctrl-j window -f next
 kwmc bind prefix+ctrl-k window -f prev
-kwmc bind prefix+ctrl-l window -f prev
+kwmc bind prefix+ctrl-l screen -f prev
 
 kwmc bind prefix+ctrl-6 screen -m next
 
-kwmc bind prefix+ctrl+cmd-h screen -m next
-kwmc bind prefix+ctrl+cmd-j window -s next
-kwmc bind prefix+ctrl+cmd-k window -s prev
-kwmc bind prefix+ctrl+cmd-l screen -m prev
+kwmc bind prefix+ctrl+cmd-h window -s west
+kwmc bind prefix+ctrl+cmd-j window -s south
+kwmc bind prefix+ctrl+cmd-k window -s north
+kwmc bind prefix+ctrl+cmd-l window -s east
 
 kwmc bind prefix+ctrl-r tree -r 180
 kwmc bind prefix+ctrl+cmd-r config reload

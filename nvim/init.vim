@@ -18,9 +18,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/vim-cjsx'
 Plug 'slim-template/vim-slim'
-Plug 'szw/vim-ctrlspace'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace'
@@ -41,6 +41,15 @@ Plug 'tpope/vim-endwise'
 Plug 'slim-template/vim-slim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
+Plug 'genoma/vim-less'
+Plug 'wellle/targets.vim'
+Plug 'danro/rename.vim'
+Plug 'oakmac/parinfer-viml'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'joshdick/onedark.vim'
+Plug 'W0ng/vim-hybrid'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'AlessandroYorba/Sierra'
 
 call plug#end()
 
@@ -52,7 +61,15 @@ let mapleader = " "
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set background=dark
-colorscheme base16-ocean
+
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1
+" colorscheme hybrid
+
+let g:enable_bold_font = 1
+colorscheme hybrid_material
+
+" colorscheme base16-ocean
 
 " Settings
 set list listchars=tab:→\ ,trail:·,extends:❯,precedes:❮
@@ -181,10 +198,11 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
+map <leader>c "*y
+map <leader>v "*p
+
 map <leader>r :windo redraw!<cr>
 map <leader>R :so $MYVIMRC<cr>
-
-map <leader>G :GundoToggle<cr>
 
 nmap <leader>coff :!coffee -p % \| less -p <C-r><C-w><CR>
 
@@ -205,8 +223,10 @@ let g:airline#extensions#tmuxline#enabled = 0
 
 autocmd! BufWritePost * Neomake
 
-"Marked stuff
-:nnoremap <leader>m :silent !open -a Marked\ 2.app '%:p'<cr>
+let g:neomake_typescript_tsc_make = { 'args': ['--noEmit'] }
+
+"Typora stuff
+:nnoremap <leader>m :silent !open -a Typora.app '%:p'<cr>
 
 " lighline functions
 function! FugitiveLightLine()
@@ -239,6 +259,7 @@ let g:fzf_layout = {'down': '~20%'}
 let g:fzf_nvim_statusline = 0
 
 nnoremap <C-p> :Files<cr>
+nnoremap <C-@> :Buffers<cr>
 
 if has('linebreak')
   set breakindent

@@ -18,7 +18,6 @@ alias zless=$PAGER
 # git aliases
 alias gst='git status'
 alias gch='git checkout'
-alias gcb='git checkout -b'
 alias gcm='git checkout $(git town main-branch)'
 alias gct='git checkout -t'
 alias gdi='git diff'
@@ -48,6 +47,6 @@ alias sshblog='ssh root@$BLOG_URL'
 
 alias rd='cd $(git rev-parse --show-toplevel)'
 
-alias unloadKwm='launchctl unload ~/Library/LaunchAgents/kwm.plist'
-alias loadKwm='launchctl load ~/Library/LaunchAgents/kwm.plist'
+alias unloadKwm='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.kwm.plist'
+alias loadKwm='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.kwm.plist'
 alias rake='noglob rake'
