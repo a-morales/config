@@ -52,22 +52,34 @@ vif() {
 }
 
 checkGitStatus() {
-git remote update &> /dev/null
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse @{u})
-BASE=$(git merge-base @ @{u})
+    git remote update &> /dev/null
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse @{u})
+    BASE=$(git merge-base @ @{u})
 
-if [ $LOCAL = $REMOTE ]; then
-    echo "Up to date"
-elif [ $LOCAL = $BASE ]; then
-    echo "Need to pull"
-elif [ $REMOTE = $BASE ]; then
-    echo "Need to push"
-else
-    echo "Diverged"
-fi
+    if [ $LOCAL = $REMOTE ]; then
+        echo "Up to date"
+    elif [ $LOCAL = $BASE ]; then
+        echo "Need to pull"
+    elif [ $REMOTE = $BASE ]; then
+        echo "Need to push"
+    else
+        echo "Diverged"
+    fi
 }
 
 gpip() {
   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+listAirplay() {
+  dns-sd -B _airplay local
+}
+
+infoAirplay() {
+  dns-sd -L $1 _airplay local
+}
+
+getAirplayIp() {
+  dns-sd -G v4v6 "$1.local"
 }

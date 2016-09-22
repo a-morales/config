@@ -14,6 +14,7 @@ source ~/.config/zsh/bindkeys.zsh
 source ~/.config/zsh/history.zsh
 source ~/.config/zsh/zsh_hooks.zsh
 source "${HOME}/.bin/zgen/zgen.zsh"
+source ~/Fun/fzf-cmd/fzf-cmd.plugin.zsh
 
 if which rbenv > /dev/null; then
   eval "$(rbenv init -)"
@@ -43,5 +44,4 @@ if ! zgen saved; then
 
 fi
 
-eval "$(thefuck --alias)"
-
+source /usr/local/bin/virtualenvwrapper.sh

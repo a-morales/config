@@ -1,25 +1,26 @@
-filety off
+filetype off
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Raimondi/delimitMate'
-Plug 'SwagKingTenK/VimSearch'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gabesoft/vim-ags'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'guns/vim-sexp'
+" Plug 'guns/vim-sexp'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/vim-cjsx'
-Plug 'slim-template/vim-slim'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'tpope/vim-classpath'
+" Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -28,28 +29,40 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-salve'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+" Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'unblevable/quick-scope'
-Plug 'wavded/vim-stylus'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-endwise'
-Plug 'slim-template/vim-slim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 Plug 'genoma/vim-less'
 Plug 'wellle/targets.vim'
 Plug 'danro/rename.vim'
-Plug 'oakmac/parinfer-viml'
+" Plug 'oakmac/parinfer-viml'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'W0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'AlessandroYorba/Sierra'
+Plug 'tpope/vim-sleuth'
+Plug 'derekwyatt/vim-scala'
+Plug 'christoomey/vim-sort-motion'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'mhinz/vim-startify'
+Plug 'salsifis/vim-transpose'
+Plug 'juanedi/predawn.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'gkz/vim-ls'
+Plug 'Originate/tertestrial-vim'
+Plug 'tpope/vim-abolish'
+Plug 'metakirby5/codi.vim'
+Plug 'rakr/vim-two-firewatch'
+" Plug 'luochen1990/rainbow'
+Plug 'jacoborus/tender'
+Plug 'lervag/vimtex'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
@@ -58,9 +71,13 @@ let mapleader = " "
 
 " Themes and Colors
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
+" let macvim_skip_colorscheme=1
+"
 set background=dark
+
+" colorscheme tender
 
 " let g:hybrid_custom_term_colors = 1
 " let g:hybrid_reduced_contrast = 1
@@ -68,6 +85,11 @@ set background=dark
 
 let g:enable_bold_font = 1
 colorscheme hybrid_material
+
+let g:rainbow_active = 1
+
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 
 " colorscheme base16-ocean
 
@@ -197,14 +219,13 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+map <leader>mk :!mkdir %%
 
 map <leader>c "*y
 map <leader>v "*p
 
 map <leader>r :windo redraw!<cr>
 map <leader>R :so $MYVIMRC<cr>
-
-nmap <leader>coff :!coffee -p % \| less -p <C-r><C-w><CR>
 
 nmap <leader>a :Ags<Space>
 
@@ -226,7 +247,7 @@ autocmd! BufWritePost * Neomake
 let g:neomake_typescript_tsc_make = { 'args': ['--noEmit'] }
 
 "Typora stuff
-:nnoremap <leader>m :silent !open -a Typora.app '%:p'<cr>
+:nnoremap <leader>md :silent !open -a Typora.app '%:p'<cr>
 
 " lighline functions
 function! FugitiveLightLine()
@@ -236,8 +257,9 @@ function! FugitiveLightLine()
   endif
 endfunction
 
+let g:tender_lightline = 1
 let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
+  \ 'colorscheme': 'tender',
   \ 'active': {
   \   'left': [ ['mode'], ['fugitive', 'filename', 'modified']],
   \   'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
@@ -258,6 +280,10 @@ let g:fzf_action = {'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
 let g:fzf_layout = {'down': '~20%'}
 let g:fzf_nvim_statusline = 0
 
+let g:deoplete#enable_at_startup=1
+let g:deoplete#file#enable_buffer_path=1
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
 nnoremap <C-p> :Files<cr>
 nnoremap <C-@> :Buffers<cr>
 
@@ -268,3 +294,7 @@ if has('linebreak')
 end
 
 nmap =j :%!python -m json.tool<CR>
+
+set iskeyword-=/
+
+let g:tex_conceal = ""

@@ -1,57 +1,55 @@
 kwmc config padding 25 5 5 5
 kwmc config gap 5 5
 
-kwmc config focused-border color AA8FA1B3
-kwmc config focused-border on
-kwmc config focused-border size 4
-
-kwmc config prefix-border color FFBF616A
-kwmc config prefix-border on
-kwmc config prefix-border size 4
-
-kwmc config focus autoraise
-kwmc config tiling on
-kwmc config menu-fix off
-kwmc config cycle-focus screen
+kwmc config tiling bsp
 kwmc config float-non-resizable on
-kwmc config focus standby-on-float on
-kwmc config focus mouse-follows on
-kwmc config focus-wrap-around all
-kwmc config dragndrop on
+kwmc config lock-to-container on
+kwmc config focus-follows-mouse on
+kwmc config standby-on-float on
+kwmc config mouse-follows-focus on
 
-kwmc config add-role AXDialog iTerm2
+kwmc config cycle-focus on
 
-# App Ignore List
-kwmc config float Steam
-kwmc config float Screenhero
-kwmc config float VLC
-
-# Hotkeys
 kwmc config hotkeys on
-kwmc config prefix-key ctrl-;
-kwmc prefix-global off
-kwmc config prefix-timeout 0.50
 
-kwmc bind prefix+r kwmc config reload
+kwmc rule owner="iTerm2" properties={role="AXDialog"}
 
-kwmc bind prefix+ctrl-h screen -f next
-kwmc bind prefix+ctrl-j window -f next
-kwmc bind prefix+ctrl-k window -f prev
-kwmc bind prefix+ctrl-l screen -f prev
+kwmc config border focused on
+kwmc config border focused size 4
+kwmc config border focused color 0xAA8FA1B3
+kwmc config border focused radius 6
 
-kwmc bind prefix+ctrl-6 screen -m next
+kwmc mode prefix prefix on
+kwmc mode prefix timeout 0.40
+kwmc mode prefix restore default
+kwmc mode prefix color 0xFFBF616A
 
-kwmc bind prefix+ctrl+cmd-h window -s west
-kwmc bind prefix+ctrl+cmd-j window -s south
-kwmc bind prefix+ctrl+cmd-k window -s north
-kwmc bind prefix+ctrl+cmd-l window -s east
+kwmc bindsym ctrl-; mode activate prefix
 
-kwmc bind prefix+ctrl-r tree -r 180
-kwmc bind prefix+ctrl+cmd-r config reload
-kwmc bind prefix+ctrl-f window -t fullscreen
+kwmc bindsym prefix+ctrl-h window -f west
+kwmc bindsym prefix+ctrl-j window -f south
+kwmc bindsym prefix+ctrl-k window -f north
+kwmc bindsym prefix+ctrl-l window -f east
 
-kwmc bind prefix+ctrl-q quit
+kwmc bindsym prefix+ctrl-d display -f next
 
-kwmc bind prefix+ctrl-1 space -t bsp
-kwmc bind prefix+ctrl-2 space -t monocle
-kwmc bind prefix+ctrl-3 tree restore 3-col
+kwmc bindsym prefix+ctrl+cmd-h window -s west
+kwmc bindsym prefix+ctrl+cmd-j window -s south
+kwmc bindsym prefix+ctrl+cmd-k window -s north
+kwmc bindsym prefix+ctrl+cmd-l window -s east
+
+kwmc bindsym prefix+ctrl-q quit
+kwmc bindsym prefix+ctrl+cmd-q exec lunchy stop mxcl.kwm
+
+kwmc bindsym prefix+ctrl-r tree rotate 180
+kwmc bindsym prefix+ctrl+shift-r tree rotate 90
+
+kwmc bindsym prefix+ctrl-1 space -t bsp
+kwmc bindsym prefix+ctrl-2 space -t monocle
+kwmc bindsym prefix+ctrl-3 tree restore 3-col
+
+kwmc bindsym prefix+ctrl+cmd-d window -m display next
+
+kwmc bindsym prefix+ctrl-m window -c type toggle
+kwmc bindsym prefix+ctrl-n window -fm next
+kwmc bindsym prefix+ctrl+cmd-n window -fm prev
