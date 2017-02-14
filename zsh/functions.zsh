@@ -1,5 +1,3 @@
-function exists { which $1 &> /dev/null }
-
 path() {
   echo $PATH | tr ":" "\n" | \
     awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
@@ -42,7 +40,7 @@ fd() {
 
 cdf() {
    local file
-   file=$(fzf-tmux +m -q "$1") && cd $(dirname "$file")
+   file=$(fzf-tmux +m -q "$1") && cd "$(dirname "$file")"
 }
 
 vif() {
@@ -51,25 +49,12 @@ vif() {
   [ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
 
-checkGitStatus() {
-    git remote update &> /dev/null
-    LOCAL=$(git rev-parse @)
-    REMOTE=$(git rev-parse @{u})
-    BASE=$(git merge-base @ @{u})
-
-    if [ $LOCAL = $REMOTE ]; then
-        echo "Up to date"
-    elif [ $LOCAL = $BASE ]; then
-        echo "Need to pull"
-    elif [ $REMOTE = $BASE ]; then
-        echo "Need to push"
-    else
-        echo "Diverged"
-    fi
-}
-
 gpip() {
   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+gpip3() {
+  PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 
 listAirplay() {

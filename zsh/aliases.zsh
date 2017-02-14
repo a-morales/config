@@ -25,6 +25,7 @@ alias gds='git diff --stat'
 alias gbr='git branch'
 alias gbdm='git checkout master && git branch --merged | grep -v "* master" | grep -v "qa" | xargs git branch -d'
 alias glo='git log --oneline'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gfe='git fetch'
 alias gmom='git merge origin/master'
 alias gbim='git rebase -i origin/master'

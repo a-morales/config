@@ -32,4 +32,6 @@ export WORKON_HOME="$HOME/.envs"
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
-export PATH=/usr/local/texlive/2015basic/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:$HOME/.bin:./node_modules/.bin:/usr/sbin:/sbin:$GOPATH/bin:/usr/local/sbin:bin:$HOME/.bin/dasht:$PATH
+export AWS_CBOR_DISABLE=true
+
+export PATH=/usr/local/texlive/2016/bin/x86_64-darwin:/usr/local/bin:/usr/bin:/bin:$HOME/.bin:./node_modules/.bin:/usr/sbin:/sbin:$GOPATH/bin:/usr/local/sbin:bin:$HOME/.bin/dasht:$HOME/.yarn/bin:~/.cargo/bin:$PATH

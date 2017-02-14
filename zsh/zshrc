@@ -2,7 +2,6 @@ autoload -U select-word-style
 select-word-style bash
 
 source ~/.config/zsh/secrets.zsh
-source ~/.config/zsh/checks.zsh
 source ~/.config/zsh/colors.zsh
 source ~/.config/zsh/setopt.zsh
 source ~/.config/zsh/exports.zsh
@@ -14,7 +13,6 @@ source ~/.config/zsh/bindkeys.zsh
 source ~/.config/zsh/history.zsh
 source ~/.config/zsh/zsh_hooks.zsh
 source "${HOME}/.bin/zgen/zgen.zsh"
-source ~/Fun/fzf-cmd/fzf-cmd.plugin.zsh
 
 if which rbenv > /dev/null; then
   eval "$(rbenv init -)"
@@ -24,7 +22,7 @@ function npm_chpwd_hook() {
   NPMPATH="$(npm bin)"
 
   if [ -d "$NPMPATH" ]; then
-    PATH=$NPMPATH:$PRENPMPATH
+    PATH=$PRENPMPATH:$NPMPATH
   else
     PATH=$PRENPMPATH
   fi
@@ -33,7 +31,7 @@ function npm_chpwd_hook() {
 }
 
 export PRENPMPATH=$PATH
-npm_chpwd_hook
+# npm_chpwd_hook
 
 if ! zgen saved; then
   echo "Creating Zgen stuff"
@@ -44,4 +42,4 @@ if ! zgen saved; then
 
 fi
 
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
