@@ -45,7 +45,6 @@ Plug 'danro/rename.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'W0ng/vim-hybrid'
-Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'tpope/vim-sleuth'
 Plug 'derekwyatt/vim-scala'
 Plug 'christoomey/vim-sort-motion'
@@ -53,16 +52,19 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'mhinz/vim-startify'
 Plug 'salsifis/vim-transpose'
 Plug 'juanedi/predawn.vim'
-Plug 'mhartington/oceanic-next'
 Plug 'gkz/vim-ls'
 Plug 'Originate/tertestrial-vim'
 Plug 'tpope/vim-abolish'
 Plug 'metakirby5/codi.vim'
-Plug 'rakr/vim-two-firewatch'
-" Plug 'luochen1990/rainbow'
-Plug 'jacoborus/tender'
-Plug 'lervag/vimtex'
 Plug 'pangloss/vim-javascript'
+Plug 'digitaltoad/vim-pug'
+Plug 'GEverding/vim-hocon'
+Plug 'wavded/vim-stylus'
+Plug 'mxw/vim-jsx'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Alok/notational-fzf-vim'
+Plug 'exu/pgsql.vim'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -79,12 +81,9 @@ set background=dark
 
 " colorscheme tender
 
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1
-" colorscheme hybrid
-
-let g:enable_bold_font = 1
-colorscheme hybrid_material
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
+colorscheme hybrid
 
 let g:rainbow_active = 1
 
@@ -171,6 +170,7 @@ augroup END
 
 
 set backup                        " enable backups
+set backupcopy=yes
 set noswapfile                    " it's 2013, Vim.
 
 set undodir=~/.vim/tmp/undo//     " undo files
@@ -282,10 +282,14 @@ let g:fzf_nvim_statusline = 0
 
 let g:deoplete#enable_at_startup=1
 let g:deoplete#file#enable_buffer_path=1
+
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'file']
+
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 nnoremap <C-p> :Files<cr>
-nnoremap <C-@> :Buffers<cr>
+nnoremap <C-space> :Buffers<cr>
 
 if has('linebreak')
   set breakindent
@@ -293,8 +297,15 @@ if has('linebreak')
   set cpo+=n
 end
 
-nmap =j :%!python -m json.tool<CR>
+nmap =j :%!python -m json.tool<CR>:set filetype=json<CR>
 
 set iskeyword-=/
 
 let g:tex_conceal = ""
+
+let g:jsx_ext_required = 0
+
+let g:nv_directories = ['~/Dropbox/School/psy101', '~/Dropbox/School/cs301', '~/Dropbox/School/econ102', '~/Dropbox/School/cs489']
+nnoremap <c-n> :NV<CR>
+
+let g:sql_type_default = 'pgsql'
