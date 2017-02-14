@@ -1,0 +1,39 @@
+khd kwm on
+
+khd mode default color 0xAA8FA1B3
+
+khd mode prefix prefix on
+khd mode prefix timeout .40
+khd mode prefix restor default
+khd mode prefix color 0xFFBF616A
+
+ctrl-;                        : khd -e "mode activate prefix"
+
+prefix + ctrl - h             : kwmc window -f west
+prefix + ctrl - j             : kwmc window -f south
+prefix + ctrl - k             : kwmc window -f north
+prefix + ctrl - l             : kwmc window -f east
+
+prefix + ctrl - d             : kwmc display -f next
+
+prefix + ctrl + cmd - h       : kwmc window -s west
+prefix + ctrl + cmd - j       : kwmc window -s south
+prefix + ctrl + cmd - k       : kwmc window -s north
+prefix + ctrl + cmd - l       : kwmc window -s east
+
+prefix + ctrl - q             : kwmc quit
+prefix + ctrl + cmd - q       : kwmc exec lunchy stop mxcl.kwm
+
+prefix + ctrl - r             : kwmc tree rotate 180
+prefix + ctrl + shift - r     : kwmc tree rotate 90
+
+prefix + ctrl - 1             : kwmc space -t bsp
+prefix + ctrl - 2             : kwmc space -t monocle
+prefix + ctrl - 3             : kwmc tree restore 3-col
+prefix + ctrl - 4             : kwmc tree restore 2-col-wide
+
+prefix + ctrl + cmd - d       : kwmc window -m display next
+
+prefix + ctrl - m             : kwmc window -c type toggle
+prefix + ctrl - n             : kwmc window -fm next
+prefix + ctrl + cmd - n       : kwmc window -fm prev

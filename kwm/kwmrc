@@ -1,6 +1,5 @@
 kwmc config padding 25 5 5 5
 kwmc config gap 5 5
-
 kwmc config tiling bsp
 kwmc config float-non-resizable on
 kwmc config lock-to-container on
@@ -47,6 +46,7 @@ kwmc bindsym prefix+ctrl+shift-r tree rotate 90
 kwmc bindsym prefix+ctrl-1 space -t bsp
 kwmc bindsym prefix+ctrl-2 space -t monocle
 kwmc bindsym prefix+ctrl-3 tree restore 3-col
+kwmc bindsym prefix+ctrl-4 tree restore 2-col-wide
 
 kwmc bindsym prefix+ctrl+cmd-d window -m display next
 
