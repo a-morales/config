@@ -29,9 +29,9 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 alias gfe='git fetch'
 alias gmom='git merge origin/master'
 alias gbim='git rebase -i origin/master'
-alias gha='git town-hack'
-alias gsh='git town-ship'
-alias gsy='git town-sync'
+alias gha='git-town hack'
+alias gsh='git-town ship'
+alias gsy='git-town sync'
 alias gco='git commit'
 alias gitp='git clone $(pbpaste)'
 glom() { git log --oneline origin/master.."$1" $* }

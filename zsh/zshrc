@@ -43,3 +43,6 @@ if ! zgen saved; then
 fi
 
 # source /usr/local/bin/virtualenvwrapper.sh
+source <(kubectl completion zsh)
+
+[ -s "/Users/morales/.scm_breeze/scm_breeze.sh" ] && source "/Users/morales/.scm_breeze/scm_breeze.sh"
